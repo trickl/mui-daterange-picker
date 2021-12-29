@@ -2,14 +2,14 @@
 
 import {
   Grid,
-  makeStyles,
   IconButton,
   Select,
   MenuItem,
-} from '@material-ui/core';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import {
   setMonth,
   getMonth,
@@ -70,11 +70,11 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 }: HeaderProps) => {
   const classes = useStyles();
 
-  const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleMonthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(setMonth(date, parseInt(event.target.value)));
   };
 
-  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(setYear(date, parseInt(event.target.value)));
   };
 

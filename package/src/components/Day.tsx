@@ -4,10 +4,10 @@ import * as React from 'react';
 import {
   IconButton,
   Typography,
-  makeStyles,
   // eslint-disable-next-line no-unused-vars
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { combine } from '../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({

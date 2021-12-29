@@ -4,12 +4,12 @@ import {
   Grid,
   Typography,
   Divider,
-  makeStyles,
   // eslint-disable-next-line no-unused-vars
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { format, differenceInCalendarMonths } from 'date-fns';
-import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
+import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Month from './Month';
 import DefinedRanges from './DefinedRanges';
 import {
