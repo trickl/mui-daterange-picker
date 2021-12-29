@@ -2,8 +2,8 @@
 
 A react date range picker implementation using @mui (v5).
 
-<a href='https://www.npmjs.com/package/materialui-daterange-picker'>
-    <img src='https://img.shields.io/npm/v/materialui-daterange-picker.svg' alt='Latest npm version'>
+<a href='https://www.npmjs.com/package/mui-daterange-picker'>
+    <img src='https://img.shields.io/npm/v/mui-daterange-picker.svg' alt='Latest npm version'>
 </a>
 
 ## Preview
@@ -12,7 +12,7 @@ A react date range picker implementation using @mui (v5).
 
 ## Live Demo
 
-Check out the project running [here](https://codesandbox.io/s/materialui-daterange-picker-2p3f1?file=/src/App.js)!
+Check out the project running [here](https://codesandbox.io/s/mui-daterange-picker-playground-for-pb-r9rmn?file=/src/App.js)!
 
 ## Usage
 

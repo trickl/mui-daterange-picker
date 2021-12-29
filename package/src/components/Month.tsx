@@ -1,50 +1,18 @@
-import * as React from 'react';
+import React from "react";
+import { Paper, Grid, Typography } from "@mui/material";
 import {
-  Paper,
-  Grid,
-  Typography,
-} from '@mui/material';
-import { makeStyles } from '@mui/styles';
+  getDate, isSameMonth, isToday, format, isWithinInterval
+} from "date-fns";
 import {
-  getDate,
-  isSameMonth,
-  isToday,
-  format,
-  isWithinRange,
-} from 'date-fns';
-import {
-  chunks,
-  getDaysInMonth,
-  isStartOfRange,
-  isEndOfRange,
-  inDateRange,
-  isRangeSameDay,
-} from '../utils';
-import Header from './Header';
-import Day from './Day';
-
+  chunks, getDaysInMonth, isStartOfRange, isEndOfRange, inDateRange, isRangeSameDay
+} from "../utils";
+import Header from "./Header";
+import Day from "./Day";
 
 // eslint-disable-next-line no-unused-vars
-import { NavigationAction, DateRange } from '../types';
+import { NavigationAction, DateRange } from "../types";
 
-const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
-const useStyles = makeStyles(() => ({
-  root: {
-    width: 290,
-  },
-  weekDaysContainer: {
-    marginTop: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-  },
-  daysContainer: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    marginTop: 15,
-    marginBottom: 20,
-  },
-}));
+const WEEK_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 interface MonthProps {
   value: Date;
@@ -65,8 +33,6 @@ interface MonthProps {
 }
 
 const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
-  const classes = useStyles();
-
   const {
     helpers,
     handlers,
@@ -75,14 +41,14 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
     marker,
     setValue: setDate,
     minDate,
-    maxDate,
+    maxDate
   } = props;
 
   // eslint-disable-next-line react/destructuring-assignment
   const [back, forward] = props.navState;
 
   return (
-    <Paper square elevation={0} className={classes.root}>
+    <Paper square elevation={0} sx={{ width: 290 }}>
       <Grid container>
         <Header
           date={date}
@@ -98,7 +64,11 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
           container
           direction="row"
           justifyContent="space-between"
-          className={classes.weekDaysContainer}
+          sx={{
+            marginTop: "10px",
+            paddingLeft: "30px",
+            paddingRight: "30px"
+          }}
         >
           {WEEK_DAYS.map((day) => (
             <Typography color="textSecondary" key={day} variant="caption">
@@ -112,7 +82,12 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
           container
           direction="column"
           justifyContent="space-between"
-          className={classes.daysContainer}
+          sx={{
+            paddingLeft: '15px',
+            paddingRight: '15px',
+            marginTop: '15px',
+            marginBottom: '20px'
+          }}
         >
           {chunks(getDaysInMonth(date), 7).map((week, idx) => (
             // eslint-disable-next-line react/no-array-index-key
@@ -125,13 +100,13 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
 
                 return (
                   <Day
-                    key={format(day, 'MM-DD-YYYY')}
+                    key={format(day, "dd-MM-yyyy")}
                     filled={isStart || isEnd}
                     outlined={isToday(day)}
                     highlighted={highlighted && !isRangeOneDay}
                     disabled={
                       !isSameMonth(date, day)
-                      || !isWithinRange(day, minDate, maxDate)
+                      || !isWithinInterval(day, { start: minDate, end: maxDate })
                     }
                     startOfRange={isStart && !isRangeOneDay}
                     endOfRange={isEnd && !isRangeOneDay}

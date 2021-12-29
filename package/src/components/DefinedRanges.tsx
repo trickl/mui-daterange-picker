@@ -1,9 +1,7 @@
 import React from 'react';
-import { List, ListItem, ListItemText } from '@mui/material';
-import { isSameDay } from 'date-fns';
-
-// eslint-disable-next-line no-unused-vars
-import { DefinedRange, DateRange } from '../types';
+import {List, ListItem, ListItemText} from '@mui/material';
+import {isSameDay} from 'date-fns';
+import {DateRange, DefinedRange} from '../types';
 
 type DefinedRangesProps = {
   setRange: (range: DateRange) => void;
@@ -32,7 +30,7 @@ const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
         <ListItemText
           primaryTypographyProps={{
             variant: 'body2',
-            style: {
+            sx: {
               fontWeight: isSameRange(range, selectedRange)
                 ? 'bold'
                 : 'normal',

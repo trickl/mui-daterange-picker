@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface DateRange {
   startDate?: Date;
   endDate?: Date;

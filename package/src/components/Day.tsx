@@ -1,49 +1,5 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-
-import * as React from 'react';
-import {
-  IconButton,
-  Typography,
-  // eslint-disable-next-line no-unused-vars
-  Theme,
-} from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import { combine } from '../utils';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  leftBorderRadius: {
-    borderRadius: '50% 0 0 50%',
-  },
-  rightBorderRadius: {
-    borderRadius: '0 50% 50% 0',
-  },
-  buttonContainer: {
-    display: 'flex',
-  },
-  button: {
-    height: 36,
-    width: 36,
-    padding: 0,
-  },
-  buttonText: {
-    lineHeight: 1.6,
-  },
-  outlined: {
-    border: `1px solid ${theme.palette.primary.dark}`,
-  },
-  filled: {
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-    },
-    backgroundColor: theme.palette.primary.dark,
-  },
-  highlighted: {
-    backgroundColor: theme.palette.action.hover,
-  },
-  contrast: {
-    color: theme.palette.primary.contrastText,
-  },
-}));
+import React from 'react';
+import { IconButton, Typography, Box } from '@mui/material';
 
 interface DayProps {
   filled?: boolean;
@@ -68,39 +24,47 @@ const Day: React.FunctionComponent<DayProps> = ({
   onHover,
   value,
 }: DayProps) => {
-  const classes = useStyles();
 
   return (
-    <div
-      className={combine(
-        classes.buttonContainer,
-        startOfRange && classes.leftBorderRadius,
-        endOfRange && classes.rightBorderRadius,
-        !disabled && highlighted && classes.highlighted,
-      )}
+    <Box
+      sx={{
+        display: 'flex',
+        // eslint-disable-next-line no-nested-ternary
+        borderRadius: startOfRange ? '50% 0 0 50%' : endOfRange ? '0 50% 50% 0' : undefined,
+        backgroundColor: (theme) => !disabled && highlighted ? theme.palette.action.hover : undefined,
+      }}
     >
       <IconButton
-        className={combine(
-          classes.button,
-          !disabled && outlined && classes.outlined,
-          !disabled && filled && classes.filled,
-        )}
+        sx={{
+          height: '36px',
+          width: '36px',
+          padding: 0,
+          border: (theme) => !disabled && outlined ? `1px solid ${theme.palette.primary.dark}` : undefined,
+          ...(!disabled && filled ? {
+            '&:hover': {
+              backgroundColor: (theme) => theme.palette.primary.dark,
+            },
+            backgroundColor: (theme) => theme.palette.primary.dark,
+          } : {}),
+        }}
         disabled={disabled}
         onClick={onClick}
         onMouseOver={onHover}
+        // size="large"
       >
         <Typography
-          color={!disabled ? 'textPrimary' : 'textSecondary'}
-          className={combine(
-            classes.buttonText,
-            !disabled && filled && classes.contrast,
-          )}
+          sx={{
+            lineHeight: 1.6,
+            color: (theme) => !disabled
+              ? (filled ? theme.palette.primary.contrastText : theme.palette.primary.main)
+              : theme.palette.secondary.main,
+          }}
           variant="body2"
         >
           {value}
         </Typography>
       </IconButton>
-    </div>
+    </Box>
   );
 };
 

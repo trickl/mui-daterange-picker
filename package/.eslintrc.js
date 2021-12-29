@@ -5,21 +5,21 @@ module.exports = {
     node: true,
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        paths: ["src"],
+        paths: ['src'],
         extensions: [
-          ".js",
-          ".ts",
-          ".jsx",
-          ".tsx",
+          '.js',
+          '.ts',
+          '.jsx',
+          '.tsx',
         ],
       },
     },
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb',
+    // 'airbnb',
   ],
   globals: {
     Atomics: 'readonly',
@@ -38,8 +38,13 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
-    "react/jsx-props-no-spreading": 0,
-    "import/extensions": 0,
+    // note you must disable the base rule as it can report incorrect errors
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
+    'react/jsx-props-no-spreading': 0,
+    'import/extensions': 0,
+    'react/function-component-definition': 'off',
+    'no-unused-vars': 'warn',
   },
 };
