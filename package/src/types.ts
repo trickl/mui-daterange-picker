@@ -5,6 +5,7 @@ export interface DateRange {
   endDate?: Date;
 }
 
+// eslint-disable-next-line no-unused-vars
 export type Setter<T> = React.Dispatch<React.SetStateAction<T>> | ((value: T) => void);
 
 export enum NavigationAction {

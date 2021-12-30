@@ -4,6 +4,7 @@ import {isSameDay} from 'date-fns';
 import {DateRange, DefinedRange} from '../types';
 
 type DefinedRangesProps = {
+  // eslint-disable-next-line no-unused-vars
   setRange: (range: DateRange) => void;
   selectedRange: DateRange;
   ranges: DefinedRange[];

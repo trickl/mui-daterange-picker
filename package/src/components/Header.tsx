@@ -6,6 +6,7 @@ import {getMonth, getYear, setMonth, setYear} from 'date-fns';
 
 interface HeaderProps {
   date: Date;
+  // eslint-disable-next-line no-unused-vars
   setDate: (date: Date) => void;
   nextDisabled: boolean;
   prevDisabled: boolean;

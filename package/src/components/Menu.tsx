@@ -6,13 +6,9 @@ import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Month from './Month';
 import DefinedRanges from './DefinedRanges';
 import {
-  // eslint-disable-next-line no-unused-vars
   DateRange,
-  // eslint-disable-next-line no-unused-vars
   DefinedRange,
-  // eslint-disable-next-line no-unused-vars
   Setter,
-  // eslint-disable-next-line no-unused-vars
   NavigationAction,
 } from '../types';
 import { MARKERS } from './Markers';
@@ -28,11 +24,15 @@ interface MenuProps {
   setSecondMonth: Setter<Date>;
   setDateRange: Setter<DateRange>;
   helpers: {
+    // eslint-disable-next-line no-unused-vars
     inHoverRange: (day: Date) => boolean;
   };
   handlers: {
+    // eslint-disable-next-line no-unused-vars
     onDayClick: (day: Date) => void;
+    // eslint-disable-next-line no-unused-vars
     onDayHover: (day: Date) => void;
+    // eslint-disable-next-line no-unused-vars
     onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
   };
   locale?: Locale;

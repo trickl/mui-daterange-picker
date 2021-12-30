@@ -9,7 +9,6 @@ import {
 import Header from "./Header";
 import Day from "./Day";
 
-// eslint-disable-next-line no-unused-vars
 import { NavigationAction, DateRange } from "../types";
 
 
@@ -20,13 +19,18 @@ interface MonthProps {
   minDate: Date;
   maxDate: Date;
   navState: [boolean, boolean];
+  // eslint-disable-next-line no-unused-vars
   setValue: (date: Date) => void;
   helpers: {
+    // eslint-disable-next-line no-unused-vars
     inHoverRange: (day: Date) => boolean;
   };
   handlers: {
+    // eslint-disable-next-line no-unused-vars
     onDayClick: (day: Date) => void;
+    // eslint-disable-next-line no-unused-vars
     onDayHover: (day: Date) => void;
+    // eslint-disable-next-line no-unused-vars
     onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
   };
   locale?: Locale;

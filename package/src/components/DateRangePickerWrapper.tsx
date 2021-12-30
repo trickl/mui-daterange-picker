@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from 'react';
 
 import { Box } from '@mui/material';
@@ -15,6 +13,7 @@ export interface DateRangePickerWrapperProps {
   definedRanges?: DefinedRange[];
   minDate?: Date | string;
   maxDate?: Date | string;
+  // eslint-disable-next-line no-unused-vars
   onChange: (dateRange: DateRange) => void;
   closeOnClickOutside?: boolean;
   wrapperClassName?: string;
