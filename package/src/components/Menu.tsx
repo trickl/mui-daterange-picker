@@ -35,6 +35,7 @@ interface MenuProps {
     onDayHover: (day: Date) => void;
     onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
   };
+  locale?: Locale;
 }
 
 const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
@@ -50,6 +51,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     setDateRange,
     helpers,
     handlers,
+    locale
   } = props;
 
   const { startDate, endDate } = dateRange;
@@ -64,7 +66,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
           <Grid container sx={{ padding: '20px 70px' }} alignItems="center">
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="subtitle1">
-                {startDate ? format(startDate, 'dd MMMM yyyy') : 'Start Date'}
+                {startDate ? format(startDate, 'dd MMMM yyyy', {locale}) : 'Start Date'}
               </Typography>
             </Grid>
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
@@ -72,7 +74,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
             </Grid>
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="subtitle1">
-                {endDate ? format(endDate, 'dd MMMM yyyy') : 'End Date'}
+                {endDate ? format(endDate, 'dd MMMM yyyy', {locale}) : 'End Date'}
               </Typography>
             </Grid>
           </Grid>
@@ -84,6 +86,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               setValue={setFirstMonth}
               navState={[true, canNavigateCloser]}
               marker={MARKERS.FIRST_MONTH}
+              locale={locale}
             />
             <Box
               sx={{
@@ -98,6 +101,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               setValue={setSecondMonth}
               navState={[canNavigateCloser, true]}
               marker={MARKERS.SECOND_MONTH}
+              locale={locale}
             />
           </Grid>
         </Grid>

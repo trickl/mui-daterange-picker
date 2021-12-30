@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import {
   addDays,
   startOfWeek,
@@ -13,7 +11,7 @@ import {
 // eslint-disable-next-line no-unused-vars
 import { DefinedRange } from './types';
 
-const getDefaultRanges = (date: Date): DefinedRange[] => [
+export const getDefaultRanges = (date: Date, locale?: Locale): DefinedRange[] => [
   {
     label: 'Today',
     startDate: date,
@@ -26,13 +24,13 @@ const getDefaultRanges = (date: Date): DefinedRange[] => [
   },
   {
     label: 'This Week',
-    startDate: startOfWeek(date),
-    endDate: endOfWeek(date),
+    startDate: startOfWeek(date, {locale}),
+    endDate: endOfWeek(date, {locale}),
   },
   {
     label: 'Last Week',
-    startDate: startOfWeek(addWeeks(date, -1)),
-    endDate: endOfWeek(addWeeks(date, -1)),
+    startDate: startOfWeek(addWeeks(date, -1), {locale}),
+    endDate: endOfWeek(addWeeks(date, -1), {locale}),
   },
   {
     label: 'Last 7 Days',
@@ -50,5 +48,3 @@ const getDefaultRanges = (date: Date): DefinedRange[] => [
     endDate: endOfMonth(addMonths(date, -1)),
   },
 ];
-
-export const defaultRanges = getDefaultRanges(new Date());

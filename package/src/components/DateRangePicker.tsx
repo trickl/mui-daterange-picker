@@ -4,7 +4,7 @@ import {
 } from 'date-fns';
 import { DateRange, DefinedRange, NavigationAction } from '../types';
 import { getValidatedMonths, parseOptionalDate } from '../utils';
-import { defaultRanges } from '../defaults';
+import { getDefaultRanges } from '../defaults';
 import Menu from './Menu';
 import { Marker, MARKERS } from './Markers';
 
@@ -15,6 +15,7 @@ interface DateRangePickerProps {
   minDate?: Date | string;
   maxDate?: Date | string;
   onChange: (dateRange: DateRange) => void;
+  locale?: Locale;
 }
 
 const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
@@ -28,7 +29,8 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
     initialDateRange,
     minDate,
     maxDate,
-    definedRanges = defaultRanges,
+    definedRanges = getDefaultRanges(new Date(), props.locale),
+    locale,
   } = props;
 
   const minDateValid = parseOptionalDate(minDate, addYears(today, -10));
@@ -143,6 +145,7 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
       setDateRange={setDateRangeValidated}
       helpers={helpers}
       handlers={handlers}
+      locale={locale}
     />
   ) : null;
 };

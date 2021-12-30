@@ -31,7 +31,7 @@ const Day: React.FunctionComponent<DayProps> = ({
         display: 'flex',
         // eslint-disable-next-line no-nested-ternary
         borderRadius: startOfRange ? '50% 0 0 50%' : endOfRange ? '0 50% 50% 0' : undefined,
-        backgroundColor: (theme) => !disabled && highlighted ? theme.palette.action.hover : undefined,
+        backgroundColor: (theme) => !disabled && highlighted ? theme.palette.primary.light : undefined,
       }}
     >
       <IconButton
@@ -56,8 +56,8 @@ const Day: React.FunctionComponent<DayProps> = ({
           sx={{
             lineHeight: 1.6,
             color: (theme) => !disabled
-              ? (filled ? theme.palette.primary.contrastText : theme.palette.primary.main)
-              : theme.palette.secondary.main,
+              ? (filled ? theme.palette.primary.contrastText : theme.palette.text.primary)
+              : theme.palette.text.secondary,
           }}
           variant="body2"
         >

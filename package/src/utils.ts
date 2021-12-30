@@ -26,9 +26,9 @@ export const chunks = <T>(array: ReadonlyArray<T>, size: number): T[][] => (
 );
 
 // Date
-export const getDaysInMonth = (date: Date) => {
-  const startWeek = startOfWeek(startOfMonth(date));
-  const endWeek = endOfWeek(endOfMonth(date));
+export const getDaysInMonth = (date: Date, locale?: Locale) => {
+  const startWeek = startOfWeek(startOfMonth(date), {locale});
+  const endWeek = endOfWeek(endOfMonth(date), {locale});
   const days = [];
   for (let curr = startWeek; isBefore(curr, endWeek);) {
     days.push(curr);

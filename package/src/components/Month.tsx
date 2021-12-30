@@ -12,7 +12,6 @@ import Day from "./Day";
 // eslint-disable-next-line no-unused-vars
 import { NavigationAction, DateRange } from "../types";
 
-const WEEK_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 interface MonthProps {
   value: Date;
@@ -30,6 +29,7 @@ interface MonthProps {
     onDayHover: (day: Date) => void;
     onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
   };
+  locale?: Locale;
 }
 
 const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
@@ -41,10 +41,14 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
     marker,
     setValue: setDate,
     minDate,
-    maxDate
+    maxDate,
+    locale
   } = props;
 
-  // eslint-disable-next-line react/destructuring-assignment
+  const weekStartsOn = locale?.options?.weekStartsOn || 0;
+  const WEEK_DAYS = typeof locale !== 'undefined'
+    ? [...Array(7).keys()].map(d => locale.localize?.day((d+weekStartsOn) % 7, {width: 'short', context: 'standalone'}))
+    : ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
   const [back, forward] = props.navState;
 
   return (
@@ -57,6 +61,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
           prevDisabled={!back}
           onClickPrevious={() => handlers.onMonthNavigate(marker, NavigationAction.Previous)}
           onClickNext={() => handlers.onMonthNavigate(marker, NavigationAction.Next)}
+          locale={locale}
         />
 
         <Grid
@@ -70,8 +75,8 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
             paddingRight: "30px"
           }}
         >
-          {WEEK_DAYS.map((day) => (
-            <Typography color="textSecondary" key={day} variant="caption">
+          {WEEK_DAYS.map((day, index) => (
+            <Typography color="textSecondary" key={index} variant="caption">
               {day}
             </Typography>
           ))}
@@ -89,8 +94,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
             marginBottom: '20px'
           }}
         >
-          {chunks(getDaysInMonth(date), 7).map((week, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
+          {chunks(getDaysInMonth(date, locale), 7).map((week, idx) => (
             <Grid key={idx} container direction="row" justifyContent="center">
               {week.map((day) => {
                 const isStart = isStartOfRange(dateRange, day);

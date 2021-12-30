@@ -1,4 +1,4 @@
-import {Grid, IconButton, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {FormControl, Grid, IconButton, MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import React from 'react';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
@@ -11,22 +11,8 @@ interface HeaderProps {
   prevDisabled: boolean;
   onClickNext: () => void;
   onClickPrevious: () => void;
+  locale?: Locale;
 }
-
-const MONTHS = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'June',
-  'July',
-  'Aug',
-  'Sept',
-  'Oct',
-  'Nov',
-  'Dec',
-];
 
 const generateYears = (relativeTo: Date, count: number) => {
   const half = Math.floor(count / 2);
@@ -42,7 +28,12 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   prevDisabled,
   onClickNext,
   onClickPrevious,
+  locale
 }: HeaderProps) => {
+  const MONTHS = typeof locale !== 'undefined'
+    ? [...Array(12).keys()].map(d => locale.localize?.month(d, {width: 'abbreviated', context: 'standalone'}))
+    : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
   const handleMonthChange = (event: SelectChangeEvent<number>) => {
     setDate(setMonth(date, parseInt(event.target.value as string, 10)));
   };
@@ -69,31 +60,35 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         </IconButton>
       </Grid>
       <Grid item>
-        <Select
-          value={getMonth(date)}
-          onChange={handleMonthChange}
-          MenuProps={{ disablePortal: true }}
-        >
-          {MONTHS.map((month, idx) => (
-            <MenuItem key={month} value={idx}>
-              {month}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl variant="standard">
+          <Select
+            value={getMonth(date)}
+            onChange={handleMonthChange}
+            MenuProps={{disablePortal: true}}
+          >
+            {MONTHS.map((month, idx) => (
+              <MenuItem key={month} value={idx}>
+                {month}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Grid>
 
       <Grid item>
-        <Select
-          value={getYear(date)}
-          onChange={handleYearChange}
-          MenuProps={{ disablePortal: true }}
-        >
-          {generateYears(date, 30).map((year) => (
-            <MenuItem key={year} value={year}>
-              {year}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl variant="standard">
+          <Select
+            value={getYear(date)}
+            onChange={handleYearChange}
+            MenuProps={{ disablePortal: true }}
+          >
+            {generateYears(date, 30).map((year) => (
+              <MenuItem key={year} value={year}>
+                {year}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         {/* <Typography>{format(date, "MMMM YYYY")}</Typography> */}
       </Grid>
