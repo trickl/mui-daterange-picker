@@ -5,7 +5,7 @@ import {
   addWeeks,
   startOfMonth,
   endOfMonth,
-  addMonths,
+  addMonths, startOfYear, endOfYear, addYears,
 } from 'date-fns';
 
 // eslint-disable-next-line no-unused-vars
@@ -46,5 +46,15 @@ export const getDefaultRanges = (date: Date, locale?: Locale): DefinedRange[] =>
     label: 'Last Month',
     startDate: startOfMonth(addMonths(date, -1)),
     endDate: endOfMonth(addMonths(date, -1)),
+  },
+  {
+    label: 'This Year',
+    startDate: startOfYear(date),
+    endDate: endOfYear(date),
+  },
+  {
+    label: 'Last Year',
+    startDate: startOfYear(addYears(date, -1)),
+    endDate: endOfYear(addYears(date, -1)),
   },
 ];
