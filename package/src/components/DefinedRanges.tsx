@@ -26,8 +26,18 @@ const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
 }: DefinedRangesProps) => (
   <List>
     {ranges.map((range, idx) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <ListItem button key={idx} onClick={() => setRange(range)}>
+      <ListItem button
+                key={idx}
+                onClick={() => setRange(range)}
+                sx={[
+                  isSameRange(range, selectedRange) && {
+                    backgroundColor: (theme) => theme.palette.primary.dark,
+                    color: 'primary.contrastText',
+                    '&:hover': {
+                      color: 'inherit'
+                    }
+                  }]}
+      >
         <ListItemText
           primaryTypographyProps={{
             variant: 'body2',

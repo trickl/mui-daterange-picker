@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
-import { Box, Divider, Grid, Paper, Typography } from '@mui/material';
+import { Divider, Grid, Paper, Typography } from '@mui/material';
 import {differenceInCalendarMonths, format} from 'date-fns';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Month from './Month';
@@ -63,6 +63,14 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     <Paper elevation={5} square>
       <Grid container direction="row" wrap="nowrap">
         <Grid>
+          <DefinedRanges
+            selectedRange={dateRange}
+            ranges={ranges}
+            setRange={setDateRange}
+          />
+        </Grid>
+        <Divider orientation="vertical" flexItem/>
+        <Grid>
           <Grid container sx={{ padding: '20px 70px' }} alignItems="center">
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="subtitle1">
@@ -88,13 +96,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               marker={MARKERS.FIRST_MONTH}
               locale={locale}
             />
-            <Box
-              sx={{
-                borderLeft: '1px solid',
-                borderColor: 'action.hover',
-                marginBottom: '20px',
-              }}
-            />
+            <Divider orientation="vertical" flexItem/>
             <Month
               {...commonProps}
               value={secondMonth}
@@ -104,20 +106,6 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               locale={locale}
             />
           </Grid>
-        </Grid>
-        <Box
-          sx={{
-            borderLeft: '1px solid',
-            borderColor: 'action.hover',
-            marginBottom: '20px',
-          }}
-        />
-        <Grid>
-          <DefinedRanges
-            selectedRange={dateRange}
-            ranges={ranges}
-            setRange={setDateRange}
-          />
         </Grid>
       </Grid>
     </Paper>
