@@ -30,8 +30,8 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: D
     maxDate,
     definedRanges = getDefaultRanges(new Date(), props.locale),
     locale,
-    mask = "dd MMMM yyyy",
-    selectComment = { start: "Start Date", end: "End Date" },
+    mask = "yyyy-MM-dd",
+    selectComment = { start: "시작일", end: "종료일" },
   } = props;
 
   const minDateValid = parseOptionalDate(minDate, addYears(today, -10));
