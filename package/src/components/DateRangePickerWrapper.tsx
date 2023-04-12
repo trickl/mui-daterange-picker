@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import DateRangePicker from './DateRangePicker';
 
 // eslint-disable-next-line no-unused-vars
-import { DateRange, DefinedRange } from '../types';
+import { DateRange, DefinedRange, SelectComment } from '../types';
 
 export interface DateRangePickerWrapperProps {
   open: boolean;
@@ -18,6 +18,8 @@ export interface DateRangePickerWrapperProps {
   closeOnClickOutside?: boolean;
   wrapperClassName?: string;
   locale?: Locale;
+  mask: string;
+  selectComment: SelectComment;
 }
 
 const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProps> = (

@@ -60,6 +60,11 @@ interface DefinedRange {
     startDate: Date,
     endDate: Date
 }
+
+interface SelectComment {
+    start: string,
+    end: string,
+}
 ```
 
 ## Props
@@ -75,6 +80,8 @@ Name | Type                      | Required | Default value | Description
 `closeOnClickOutside` | `boolean`                 | _optional_ | `true` | defines if DateRangePicker will be closed when clicking outside of it
 `wrapperClassName` | `object`                  | _optional_ | `undefined` | defines additional wrapper style classes
 `locale` | `Locale`  (from date-dns) | _optional_ | `undefined` | defines locale to use (from date-fns package)
+`mask` | `string` | _optional_ | dd MMMM yyyy | the date format shown in the header
+`selectComment` | `SelectComment` | _optional_ | `{start: 'Start Date', end: 'End Date'}` | initially comment shown in the header
 
 ## Made possible by
 
