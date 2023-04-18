@@ -52,7 +52,7 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
               height: '100vh',
               width: '100vw',
               bottom: 0,
-              zIndex: 0,
+              zIndex: 99,
               right: 0,
               left: 0,
               top: 0,

@@ -27,3 +27,6 @@ yarn-error.log*
 package/README.md
 /.idea/
 /package/.npmrc
+
+# etc
+cp-files.sh
